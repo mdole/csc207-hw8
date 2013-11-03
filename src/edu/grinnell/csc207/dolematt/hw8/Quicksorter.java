@@ -73,6 +73,7 @@ public class Quicksorter<T> extends SorterBridge<T> {
 		large--;
 	    } // if/else
 	} // for
+	Utils.swap(vals, lb, small-1);
 	return pivot;
     } // partition
 } // Quicksorter<T>
