@@ -48,7 +48,11 @@ public class SelectionSorter<T> extends SorterBridge<T> {
     *     values is not mutated
     */
    int indexOfSmallest(T[] vals, Comparator<T> order, int lb, int ub) {
-       // STUB
+       for (int i = lb; i < ub; i++) {
+	   if (order.compare(vals[i], vals[lb]) <= 0) {
+	       lb = i;
+	   }
+       }
        return lb;
    } // indexOfSmallest(T[], Comparator<T>, int, int)
 
