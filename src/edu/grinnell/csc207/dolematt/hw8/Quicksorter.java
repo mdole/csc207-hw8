@@ -8,7 +8,9 @@ import java.util.Comparator;
  * Sort using Quicksort.
  * 
  * @author Samuel A. Rebelsky
- * @author Your Name Here.
+ * @author Matt Dole
+ * @author Mira Hall
+ * @author Andrew Kelley
  */
 public class Quicksorter<T> extends SorterBridge<T> {
     /**
