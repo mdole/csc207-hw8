@@ -16,25 +16,38 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
      */
     @Override
     public T[] sorti(T[] vals, Comparator<T> order) {
-	T[][] arrayOfArrays = (T[][]) new Object[vals.length][];
-for(int j = 0; j<vals.length; j++) {
-    arrayOfArrays[j] = (T[]) new Object[1];
-}
+	// STUB
 	int size = 1;
 	while (size < vals.length) {
 	    // Merge neighboring subarrays of size size
-	    for (int i = 0; i < vals.length; i += size) {
-		Utils.merge(order, vals, i, i + size, vals, i + size, i
-			+ (2 * size));
-	    } // for
-
+	    int[] bounds = { 0, 0, 0, 0 };
+	    boundsIncrement(size, bounds);
+	    T[] temp = (T[]) (new Object[size * 2]);
+	    while (bounds[3] <= vals.length) {
+		temp = Utils.merge(order, vals, bounds[0], bounds[1], vals,
+			bounds[2], bounds[3]);
+		int i = bounds[0];
+		while (i < bounds[3]) {
+		    vals[i] = temp[i];
+		    i++;
+		} // while
+		boundsIncrement(size, bounds);
+	    } // while
 	    // The merged subarrays are now twice as large
 	    size *= 2;
 	} // while
-
-	if (vals.length % 2 != 0) {
-	    Utils.merge(order, vals, 0, size - 2, vals, size - 2, vals.length);
-	}
 	return vals;
     } // sorti(T[], Comparator<T>)
+
+    // 0:lb1
+    // 1:ub1
+    // 2:lb2
+    // 3:ub2
+    private void boundsIncrement(int size, int[] bounds) {
+	bounds[0] = bounds[3];
+	bounds[1] = bounds[0] + size;
+	bounds[2] = bounds[1];
+	bounds[3] = bounds[2] + size;
+    }
+
 } // IterativeMergeSorter<T>

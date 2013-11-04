@@ -64,7 +64,6 @@ class Utils {
      */
     public static <T> T[] merge(Comparator<T> order, T[] a1, int lb1, int ub1,
 	    T[] a2, int lb2, int ub2) {
-	PrintWriter pen = new PrintWriter(System.out, true);
 	int length = ub1 + ub2;
 	T[] merged = (T[]) new Object[length];
 	int i = 0;
@@ -82,7 +81,6 @@ class Utils {
 		    lb1++;
 		} // while
 	    } else {
-		pen.print(a1[lb1] + " " + a2[lb2]);
 		int c = order.compare(a1[lb1], a2[lb2]);
 		if (c < 0) {
 		    merged[i] = a1[lb1];
