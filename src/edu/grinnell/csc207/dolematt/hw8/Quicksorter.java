@@ -64,15 +64,6 @@ public class Quicksorter<T> extends SorterBridge<T> {
 	int large = ub - 1;
 	int mid = lb + rand.nextInt(large - lb);
 	Utils.swap(vals, mid, lb);
-	// for (int i = lb + 1; i < ub && small < large; i++) {
-	// if (order.compare(vals[i], vals[lb]) <= 0) {
-	// Utils.swap(vals, i, small);
-	// small++;
-	// } else {
-	// Utils.swap(vals, i, large);
-	// large--;
-	// } // if/else
-	// } // for
 	while (small < large) {
 	    if (order.compare(vals[small], vals[lb]) <= 0) {
 		small++;
