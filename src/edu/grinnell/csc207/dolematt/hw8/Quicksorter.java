@@ -26,11 +26,11 @@ public class Quicksorter<T> extends SorterBridge<T> {
      */
     public void qsort(T[] vals, Comparator<T> order, int lb, int ub) {
 	// One element arrays are sorted.
-	if (lb >= ub) {
+	if (lb >= ub - 1) {
 	    return;
 	} else {
 	    int mid = partition(vals, order, lb, ub);
-	    qsort(vals, order, lb, mid - 1);
+	    qsort(vals, order, lb, mid);
 	    qsort(vals, order, mid + 1, ub);
 	} // More than one element
     } // sorti(T[], Comparator<T>, int, int)
@@ -60,21 +60,37 @@ public class Quicksorter<T> extends SorterBridge<T> {
      */
     int partition(T[] vals, Comparator<T> order, int lb, int ub) {
 	Random rand = new Random();
-	int pivot = lb + rand.nextInt(ub - lb);
 	int small = lb + 1;
 	int large = ub - 1;
-	Utils.swap(vals, pivot, lb);
-	for (int i = lb + 1; i < ub && small <= large; i++) {
-	    if (order.compare(vals[i], vals[0]) <= 0) {
-		Utils.swap(vals, i, small);
+	int mid = lb + rand.nextInt(large - lb);
+	Utils.swap(vals, mid, lb);
+	// for (int i = lb + 1; i < ub && small < large; i++) {
+	// if (order.compare(vals[i], vals[lb]) <= 0) {
+	// Utils.swap(vals, i, small);
+	// small++;
+	// } else {
+	// Utils.swap(vals, i, large);
+	// large--;
+	// } // if/else
+	// } // for
+	while (small < large) {
+	    if (order.compare(vals[small], vals[lb]) <= 0) {
 		small++;
 	    } else {
-		Utils.swap(vals, i, large);
+		Utils.swap(vals, small, large);
 		large--;
 	    } // if/else
-	} // for
-	Utils.swap(vals, lb, small-1);
-	return pivot;
+	} // while
+	
+	if (order.compare(vals[small], vals[lb]) <= 0) {
+	    Utils.swap(vals, lb, small);
+	    return small;
+	} else {
+	    Utils.swap(vals, lb, small - 1);
+	    return small - 1;
+	} // if/else
+
+	// Utils.swap(vals, lb, small);
     } // partition
 } // Quicksorter<T>
 
