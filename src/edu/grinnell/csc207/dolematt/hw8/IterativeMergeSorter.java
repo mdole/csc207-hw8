@@ -18,7 +18,6 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
      */
     @Override
     public T[] sorti(T[] vals, Comparator<T> order) {
-	// STUB
 	int size = 1;
 	while (size < vals.length) {
 	    // Merge neighboring subarrays of size size
@@ -35,9 +34,17 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
 		} // while
 		boundsIncrement(size, bounds);
 	    } // while
-	    // The merged subarrays are now twice as large
+	      // The merged subarrays are now twice as large
 	    size *= 2;
 	} // while
+
+	// Below is an attempt to deal with the situation in which the length of
+	// the list is odd. It's probably wrong.
+	// if (vals.length % 2 != 0) {
+	// Utils.merge(order, vals, 0, vals.length - 1, vals,
+	// vals.length - 1, vals.length);
+	// }// if
+	
 	return vals;
     } // sorti(T[], Comparator<T>)
 

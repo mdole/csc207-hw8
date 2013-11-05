@@ -9,14 +9,14 @@ import edu.grinnell.csc207.dolematt.hw8.TestUtils;
 
 public class SorterTest {
 
-    @Test
-    public void QuicksorterTest() {
-	TestUtils.test1(new Quicksorter<Integer>());
-    }
-    
 //    @Test
-//    public void IterativeMergeSorterTest() {
-//	TestUtils.test2(new IterativeMergeSorter<Integer>());
+//    public void QuicksorterTest() {
+//	TestUtils.test1(new Quicksorter<Integer>());
 //    }
+    
+    @Test
+    public void IterativeMergeSorterTest() {
+	TestUtils.test2(new IterativeMergeSorter<Integer>());
+    }
 
 }
