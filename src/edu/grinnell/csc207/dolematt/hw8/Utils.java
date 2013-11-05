@@ -64,7 +64,7 @@ class Utils {
      */
     public static <T> T[] merge(Comparator<T> order, T[] a1, int lb1, int ub1,
 	    T[] a2, int lb2, int ub2) {
-	int length = ub1 + ub2;
+	int length = ub1 -lb1 + ub2 -lb2;
 	T[] merged = (T[]) new Object[length];
 	int i = 0;
 	while (i < length) {
