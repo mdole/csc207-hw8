@@ -87,26 +87,6 @@ public class Quicksorter<T> extends SorterBridge<T> {
 	    Utils.swap(vals, lb, small - 1);
 	    return small - 1;
 	} // if/else
-
-	// Utils.swap(vals, lb, small);
-    } // partition
-
-    // below is an alternate implementation based upon pseudocode from
-    // wikipedia. I thought it might decrease the number of swaps. it didn't.
-    int partition2(T[] vals, Comparator<T> order, int lb, int ub) {
-	Random rand = new Random();
-	int pivotIndex = lb + rand.nextInt(ub - 1 - lb);
-	T pivotValue = vals[pivotIndex];
-	Utils.swap(vals, pivotIndex, ub - 1);
-	int storeIndex = lb;
-	for (int i = lb; i <= ub - 2; i++) {
-	    if (order.compare(vals[i], pivotValue) <= 0) {
-		Utils.swap(vals, i, storeIndex);
-		storeIndex++;
-	    }
-	}
-	Utils.swap(vals, storeIndex, ub - 1);
-	return storeIndex;
-    }
+    } // partition(T[], Comparator<T>, int, int)
 } // Quicksorter<T>
 

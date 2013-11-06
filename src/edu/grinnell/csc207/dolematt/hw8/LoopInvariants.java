@@ -1,5 +1,12 @@
 package edu.grinnell.csc207.dolematt.hw8;
 
+/**
+ * 
+ * @author Matt Dole
+ * @author Mira Hall
+ * @author Andrew Kelley
+ * 
+ */
 public class LoopInvariants {
     /**
      * 1. SelectionSorter.indexOfSmallest: The element at the current
@@ -15,12 +22,12 @@ public class LoopInvariants {
      * smaller (according to order) of the first unexamined element of a and the
      * first unexamined element of b.
      * 
-     * 4. IterativeMergeSorter.sort: when the loop has been run x times,
-     * portions of length x+1 of the array are sorted internally
+     * 4. IterativeMergeSorter.sort: subarrays of length size or less are
+     * ordered according to order
      * 
      * 5. Quicksorter.partition: values with indices less than small precede
-     * pivot according to order, and values greater than large follow pivot
-     * according to order
+     * pivot according to order, and values with indices greater than large
+     * follow pivot according to order
      * 
      */
 }
