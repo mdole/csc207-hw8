@@ -1,6 +1,5 @@
 package edu.grinnell.csc207.dolematt.hw8;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 import edu.grinnell.csc207.dolematt.hw8.Utils;

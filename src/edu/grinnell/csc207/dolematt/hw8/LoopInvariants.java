@@ -18,7 +18,7 @@ public class LoopInvariants {
      * 4. IterativeMergeSorter.sort: when the loop has been run x times,
      * portions of length x+1 of the array are sorted internally
      * 
-     * 5. Quicksorter.partition: values with indicies less than small precede
+     * 5. Quicksorter.partition: values with indices less than small precede
      * pivot according to order, and values greater than large follow pivot
      * according to order
      * 

@@ -34,7 +34,8 @@ public class Quicksorter<T> extends SorterBridge<T> {
 	    int mid = partition(vals, order, lb, ub);
 	    qsort(vals, order, lb, mid);
 	    qsort(vals, order, mid + 1, ub);
-	} // More than one element
+	} // if/else
+	  // More than one element
     } // sorti(T[], Comparator<T>, int, int)
 
     /**
@@ -64,7 +65,9 @@ public class Quicksorter<T> extends SorterBridge<T> {
 	Random rand = new Random();
 	int small = lb + 1;
 	int large = ub - 1;
+	// the index of the pivot, a random int between lb and ub
 	int mid = lb + rand.nextInt(large - lb);
+	// exchange the pivot with the element at lb
 	Utils.swap(vals, mid, lb);
 	while (small < large) {
 	    if (order.compare(vals[small], vals[lb]) <= 0) {
@@ -74,7 +77,9 @@ public class Quicksorter<T> extends SorterBridge<T> {
 		large--;
 	    } // if/else
 	} // while
-	
+
+	// this if/else statement deals with the final element in the array,
+	// determining if it's larger or smaller than the pivot
 	if (order.compare(vals[small], vals[lb]) <= 0) {
 	    Utils.swap(vals, lb, small);
 	    return small;
@@ -85,5 +90,23 @@ public class Quicksorter<T> extends SorterBridge<T> {
 
 	// Utils.swap(vals, lb, small);
     } // partition
+
+    // below is an alternate implementation based upon pseudocode from
+    // wikipedia. I thought it might decrease the number of swaps. it didn't.
+    int partition2(T[] vals, Comparator<T> order, int lb, int ub) {
+	Random rand = new Random();
+	int pivotIndex = lb + rand.nextInt(ub - 1 - lb);
+	T pivotValue = vals[pivotIndex];
+	Utils.swap(vals, pivotIndex, ub - 1);
+	int storeIndex = lb;
+	for (int i = lb; i <= ub - 2; i++) {
+	    if (order.compare(vals[i], pivotValue) <= 0) {
+		Utils.swap(vals, i, storeIndex);
+		storeIndex++;
+	    }
+	}
+	Utils.swap(vals, storeIndex, ub - 1);
+	return storeIndex;
+    }
 } // Quicksorter<T>
 

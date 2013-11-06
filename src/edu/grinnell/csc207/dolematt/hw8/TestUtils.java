@@ -5,7 +5,13 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Comparator;
 
-
+/**
+ * @author Sam Rebelsky
+ * @author Matt Dole
+ * @author Mira Hall
+ * @author Andrew Kelley
+ *
+ */
 
 public class TestUtils {
 
@@ -18,7 +24,7 @@ public class TestUtils {
      */
     public static <T> void checkResults(T[] sorted, T[] values, T[] resorted) {
 	// System.out.println(Arrays.toString(values));
-	if (!Arrays.equals(sorted,resorted)) {
+	if (!Arrays.equals(sorted, resorted)) {
 	    fail("Sorting failed\n" + "Original: " + Arrays.toString(values)
 		    + "\n" + "Resorted: " + Arrays.toString(resorted) + "\n"
 		    + "Sorted:   " + Arrays.toString(sorted));
@@ -41,7 +47,8 @@ public class TestUtils {
      */
     public static <T> void testAllPermutations(Sorter<T> sorter,
 	    Comparator<T> order, T[] sorted) {
-	testAllPermutationsKernel(sorter, order, sorted, sorted.clone(), sorted.length);
+	testAllPermutationsKernel(sorter, order, sorted, sorted.clone(),
+		sorted.length);
     } // testAllPermutations(Sorter<T>, Comparator<T>, T[])
 
     /**
@@ -73,6 +80,9 @@ public class TestUtils {
     public static <T> void test1(Sorter<Integer> sorter) {
 	testAllPermutations(sorter, StandardIntegerComparator.comparator,
 		new Integer[] { 0, 1, 1, 2, 4, 7, 9, 11, 13, 13 });
+	System.out.println("Number of swaps performed (test 1): "
+		+ Utils.getCounter());
+	Utils.resetCounter();
     } // test1
 
     /**
@@ -82,7 +92,9 @@ public class TestUtils {
 	for (int i = 1; i < 20; i++) {
 	    testOnePermutation(sorter, StandardIntegerComparator.comparator,
 		    Utils.randomSortedInts(i * 20));
-	}
+	} // for
+	System.out.println("Number of swaps performed (test 2): "
+		+ Utils.getCounter());
+	Utils.resetCounter();
     } // test2(Sorter<Integer>)
-
 } // class TestUtils
